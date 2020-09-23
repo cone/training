@@ -49,20 +49,60 @@ function Example() {
 }
  ```
 
- ## Notes
- 1. If we want to display two or more components without creating a `div` or other HTML parent element we can use `React.Fragment`, which can also be written just as `<>`:
- ```javascript
-ReactDOM.render(
-  <React.Fragment>
-    <Component1 />
-    <Component2 />
-  </React.Fragment>,
-  document.getElementById('main')
-)
- ```
- 2. All function components receive the `props` object:
- ```javascript
-function Component1(props) {
-  ...
+## Forms
+### Uncontrolled
+For uncontrolled forms, we extract the input values using references, the changes in the DOM are handled normally by the browser:
+```javascript
+class Form extends React.Component {
+  userNameInput = React.createRef();
+  render() {
+  	return (
+    	<form action="">
+    	  <input
+          type="text"
+          placeholder="GitHub username"
+          ref={this.userNameInput} // now userNameInput will contain the text typed in the username field
+        />
+        <button>Add card</button>
+    	</form>
+    );
+  }
 }
- ```
+```
+### Controlled
+In the case of controlled forms, we get the value from the event and then tell react to update the view accordingly:
+```javascript
+class Form extends React.Component {
+  state = { userName: '' };
+  render() {
+  	return (
+    	<form action="">
+    	  <input
+          type="text"
+          value={this.state.userName}
+          onChange={(event) => this.setState({userName: event.target.value})}
+          placeholder="Username"
+        />
+        <button>Add card</button>
+    	</form>
+    );
+  }
+}
+```
+## Notes
+1. If we want to display two or more components without creating a `div` or other HTML parent element we can use `React.Fragment`, which can also be written just as `<>`:
+```javascript
+ReactDOM.render(
+<React.Fragment>
+  <Component1 />
+  <Component2 />
+</React.Fragment>,
+document.getElementById('main')
+)
+```
+2. All function components receive the `props` object:
+```javascript
+function Component1(props) {
+...
+}
+```
