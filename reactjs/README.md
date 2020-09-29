@@ -106,3 +106,4 @@ function Component1(props) {
 ...
 }
 ```
+3. Items that share similar data or behavior (e.g. items in a list, very similar sections, etc) are candidates to be abstracted in their own components. Also we can abstract components to gain more readability. However we need to avoid overdoing components.
