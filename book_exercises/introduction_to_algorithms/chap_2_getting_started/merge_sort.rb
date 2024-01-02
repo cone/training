@@ -13,23 +13,19 @@ def merge(numbers)
 end
 
 def sort(sorted_left, sorted_right, num_elements)
-  left_index = 0
-  right_index = 0
   narr = []
 
-  (1..num_elements).each do
-    right = sorted_right[right_index]
-    left = sorted_left[left_index]
+  num_elements.times do
+    right = sorted_right.first
+    left = sorted_left.first
 
     if !right || ((right && left) && (left <= right))
-      narr << sorted_left[left_index]
-      left_index += 1
+      narr << sorted_left.shift
       next
     end
 
     if !left || ((right && left) && (left > right))
-      narr << sorted_right[right_index]
-      right_index += 1
+      narr << sorted_right.shift
     end
   end
 
