@@ -12,7 +12,9 @@ export default function Document() {
         />
       </Head>
       <body>
-        <Main />
+        <div className="container">
+          <Main />
+        </div>
         <NextScript />
       </body>
     </Html>
