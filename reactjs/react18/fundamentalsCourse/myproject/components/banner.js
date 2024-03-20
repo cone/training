@@ -7,9 +7,7 @@ const subtitleStyle = {
   color: "coral",
 };
 
-const Banner = (props) => {
-  const { headerText } = props;
-
+const Banner = ({ headerText }) => {
   return (
     <header className="row mb-4">
       <div className="col-5">
