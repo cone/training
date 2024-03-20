@@ -1,6 +1,7 @@
+import { useState } from "react";
 import FlightRow from "./flightRow";
 
-const flights = [
+const flightsArray = [
   {
     id: 1,
     time: "1PM",
@@ -22,6 +23,23 @@ const flights = [
 ];
 
 const FlightList = () => {
+  const [flights, setFlights] = useState(flightsArray);
+  const addFlight = () => {
+    setFlights([
+      ...flights,
+      {
+        id: flights.length + 1,
+        time: "4PM",
+        origin: "Colima",
+        destination: "CDMX"
+      },
+    ]);
+    // passing a function to the hook(setFlights) like:
+    // setFlights((flights) => ...) warranties that we are uing the
+    // result of the last call to "setFlights". That is because React
+    // batches the hook calls if there are too many consecutive calls
+  }
+
   return (
     <>
       <div className="row mb-2">
@@ -41,6 +59,9 @@ const FlightList = () => {
           {flights.map((flight) => <FlightRow key={flight.id} flight={flight}/>)}
         </tbody>
       </table>
+      <button className="btn btn-primary" onClick={addFlight}>
+        Add flight
+      </button>
     </>
   )
 };
