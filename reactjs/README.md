@@ -90,6 +90,14 @@ class Form extends React.Component {
   }
 }
 ```
+
+## What do we need for our React app?
+1. Transform JSX to JS
+2. Process JS files
+3. Run a development server
+4. A watcher to automatically update the browser when the code changes
+5. Create a production build
+
 ## Notes
 1. If we want to display two or more components without creating a `div` or other HTML parent element we can use `React.Fragment`, which can also be written just as `<>`:
 ```javascript
@@ -110,3 +118,6 @@ function Component1(props) {
 3. Items that share similar data or behavior (e.g. items in a list, very similar sections, etc) are candidates to be abstracted in their own components. Also we can abstract components to gain more readability. However we need to avoid overdoing components.
 4. Structure of a React component should be consistent: First lines should be any hook into the state, then any computations based on the state.
 5. Preferably put content that is conditionally rendered into a separate component.
+6. JSX is NOT HTML!
+7. React separates its core library(`react`) from the code responsible for rendering the components: `react-dom` for web applications and `react-native` for mobile applications.
+8. To create a React app from scratch, the most popular options are: to use the `Create React App` tool or `Next.js`.
