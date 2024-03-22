@@ -1,29 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FlightRowMemo } from "./flightRow";
 
-const flightsArray = [
-  {
-    id: 1,
-    time: "1PM",
-    origin: "Colima",
-    destination: "CDMX"
-  },
-  {
-    id: 2,
-    time: "2PM",
-    origin: "Colima",
-    destination: "CDMX"
-  },
-  {
-    id: 3,
-    time: "3PM",
-    origin: "Colima",
-    destination: "CDMX"
-  },
-];
-
 const FlightList = () => {
-  const [flights, setFlights] = useState(flightsArray);
+  const [flights, setFlights] = useState([]);
+
+  useEffect(() => {
+    const fetchFlights = async () => {
+      const response = await fetch("/api/flights");
+      const flights = await response.json();
+      setFlights(flights);
+    };
+    fetchFlights();
+  }, []);
+
   const addFlight = () => {
     setFlights([
       ...flights,
