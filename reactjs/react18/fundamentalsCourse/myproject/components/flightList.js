@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FlightRow from "./flightRow";
+import { FlightRowMemo } from "./flightRow";
 
 const flightsArray = [
   {
@@ -56,7 +56,7 @@ const FlightList = () => {
           </tr>
         </thead>
         <tbody>
-          {flights.map((flight) => <FlightRow key={flight.id} flight={flight}/>)}
+          {flights.map((flight) => <FlightRowMemo key={flight.id} flight={flight}/>)}
         </tbody>
       </table>
       <button className="btn btn-primary" onClick={addFlight}>

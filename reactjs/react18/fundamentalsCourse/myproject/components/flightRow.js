@@ -1,3 +1,4 @@
+import { memo } from "react";
 
 const FlightRow = ({ flight }) => {
   const {
@@ -15,4 +16,10 @@ const FlightRow = ({ flight }) => {
   );
 }
 
+// We can use the memoized version, but the JSX
+// of this component is so trivial that we don't
+// gain much
+const FlightRowMemo = memo(FlightRow);
+
 export default FlightRow;
+export { FlightRowMemo };
