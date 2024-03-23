@@ -17,7 +17,6 @@ export default function App() {
     e.target.innerText = currentSymbol;
     const position = parseInt(e.target.id);
     board[position - 1] = currentSymbol;
-    alert(board);
     findWinConditions(position);
     setCurrentSymbol(currentSymbol === "O" ? "X" : "O");
   };
@@ -34,55 +33,20 @@ export default function App() {
     alert("Nothing :'(");
   };
 
-  const findVerticalColumn = (position) => {
-    if (position <= 3) {
-      return findWinVerticalColumn(position);
+  const findWinRow = (index) => {
+    const winRow = [];
+
+    if (board[index + 1] && (board[index + 1] === currentSymbol)) {
+      const { i:next } = findWinRow(index + 1);
+      next && winRow.push(next);
+    }
+    if (board[index - 1] && (board[index - 1] === currentSymbol)) {
+      const { i:prev } = findWinRow(index - 1);
+      prev && winRow.push(prev);
     }
 
-    if (position > 3 && position <= 6) {
-      return findWinVerticalColumn(position - 3);
-    }
-
-    return findWinVerticalColumn(position - 6);
-  };
-
-  const findWinVerticalColumn = (position) => {
-    const index = position - 1;
-    if (
-      board[index] === currentSymbol &&
-      board[index + 3] === currentSymbol &&
-      board[index + 6] === currentSymbol
-    ) {
-      return [index, index + 3, index + 6];
-    }
-
-    return false;
-  };
-
-  const findHorizontalColumn = (position) => {
-    if (position % 3 === 0) {
-      findWinHorizontalColumn(position - 2);
-    }
-
-    if ((position - 1) % 3 === 0 || position === 1) {
-      findWinHorizontalColumn(position);
-    }
-
-    return findWinHorizontalColumn(position - 1);
-  };
-
-  const findWinHorizontalColumn = (position) => {
-    const index = position - 1;
-    if (
-      board[index] === currentSymbol &&
-      board[index + 1] === currentSymbol &&
-      board[index + 2] === currentSymbol
-    ) {
-      return [index, index + 1, index + 2];
-    }
-
-    return false;
-  };
+    return {i: board[index], winRow}
+  }
 
   return (
     <div className="container text-center">
