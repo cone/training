@@ -1,18 +1,18 @@
-const findWinRow = ({ rowIndex, board, symbol, boardSize }) => {
-  const startIndex = boardSize * (rowIndex - 1);
-  const endIndex = (boardSize * rowIndex) - 1;
-  const row = board.slice(startIndex, endIndex + 1);
+const findWinRow = ({ rowIndex, board, symbol }) => {
+  const row = board[rowIndex - 1];
   return row.every((cellSymbol) => cellSymbol === symbol );
-}
+};
 
-const findWinColumn = ({ colIndex, board, symbol, boardSize }) => {
-  let startIndex = colIndex - 1;
-  const endIndex = startIndex + (boardSize * (boardSize - 1));
-  while (startIndex <= endIndex) {
-    if (board[startIndex] !== symbol) return false;
-    startIndex += boardSize;
-  }
-  return true;
-}
+const findWinColumn = ({ colIndex, board, symbol }) => {
+  return board.every((row) => row[colIndex - 1] === symbol );
+};
 
-export { findWinRow, findWinColumn };
+const findWinDiagonal = ({ rowIndex, colIndex, diagonalIndexes, board, symbol }) => {
+  // If the current selection is not part of the diagonal, return false
+  if (diagonalIndexes[rowIndex - 1] !== colIndex - 1) return false;
+
+  // If only one of the symbols in the diagonal doesn't match, we return "false" immediately
+  return diagonalIndexes.every((dColIndex, dRowIndex) => board[dRowIndex][dColIndex] === symbol);
+};
+
+export { findWinRow, findWinColumn, findWinDiagonal };
