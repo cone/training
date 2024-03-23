@@ -1,51 +1,41 @@
-const findConsecutiveEquals = (params) => {
-  const {
-    index,
-    board,
-    symbol,
-    increment,
-    stopIndex,
-  } = params;
-  const winRow = [];
-  let nextIndex = index + increment;
-  let prevIndex = index - increment;
-
-  while (
-    board[nextIndex] &&
-    board[nextIndex] === symbol &&
-    nextIndex <= stopIndex
-  ) {
-    winRow.push(nextIndex);
-    nextIndex += increment;
-  }
-
-  while (
-    board[prevIndex] &&
-    board[prevIndex] === symbol &&
-    prevIndex >= index
-  ) {
-    winRow.push(prevIndex);
-    prevIndex -= increment;
-  }
-
-  if (winRow.length) {
-    winRow.push(index);
-    return winRow.sort();
-  }
-
-  return false;
+import { BOARD_SIZE } from "./constants";
+const findWinRow = ({ rowIndex, board, symbol }) => {
+  const startIndex = BOARD_SIZE * (rowIndex - 1);
+  const endIndex = (BOARD_SIZE * rowIndex) - 1;
+  const row = board.slice(startIndex, endIndex + 1);
+  return row.every((cellSymbol) => cellSymbol === symbol );
 }
 
-const findWinRows = ({ index, board, symbol }) => {
-  let stopIndex;
-
-  if (index <= 2) index = 0; stopIndex = 2;
-  if (index > 2 && index <= 5) index = 3; stopIndex = 5;
-  if (index > 5) index = 6; stopIndex = 8;
-  
-  return findConsecutiveEquals({
-    index, board, symbol, stopIndex, increment: 1
-  });
+const findWinColumn = ({ colIndex, board, symbol }) => {
+  let startIndex = colIndex - 1;
+  const endIndex = startIndex + (BOARD_SIZE * (BOARD_SIZE - 1));
+  while (startIndex <= endIndex) {
+    if (board[startIndex] !== symbol) return false;
+    startIndex += BOARD_SIZE;
+  }
+  return true;
 }
 
-export { findConsecutiveEquals, findWinRows };
+const findLeftDiagonal = () => {
+  let startIndex = 0;
+  const endIndex = (BOARD_SIZE ** 2) - 1;
+  const diagonal = [];
+  while (startIndex <= endIndex) {
+    diagonal.push(startIndex);
+    startIndex += BOARD_SIZE + 1;
+  }
+  return diagonal;
+}
+
+const findRightDiagonal = () => {
+  let startIndex = BOARD_SIZE - 1;
+  const endIndex = (BOARD_SIZE ** 2) - BOARD_SIZE;
+  const diagonal = [];
+  while (startIndex <= endIndex) {
+    diagonal.push(startIndex);
+    startIndex += BOARD_SIZE - 1;
+  }
+  return diagonal;
+}
+
+export { findWinRow, findWinColumn, findLeftDiagonal, findRightDiagonal };
