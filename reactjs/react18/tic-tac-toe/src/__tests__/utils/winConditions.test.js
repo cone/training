@@ -11,8 +11,9 @@ describe('winConditions', () => {
       const rowIndex = 1;
       const board = ['X', 'X', 'X', 'O', 'O', '', '', '', ''];
       const symbol = 'X';
+      const boardSize = 3;
 
-      const result = findWinRow({ rowIndex, board, symbol });
+      const result = findWinRow({ rowIndex, board, symbol, boardSize });
 
       expect(result).toBe(true);
     });
@@ -21,8 +22,9 @@ describe('winConditions', () => {
       const rowIndex = 2;
       const board = ['X', '', 'X', 'O', 'O', 'O', '', '', ''];
       const symbol = 'O';
+      const boardSize = 3;
 
-      const result = findWinRow({ rowIndex, board, symbol });
+      const result = findWinRow({ rowIndex, board, symbol, boardSize });
 
       expect(result).toBe(true);
     });
@@ -31,8 +33,9 @@ describe('winConditions', () => {
       const rowIndex = 1;
       const board = ['X', 'X', 'O', 'O', '', '', '', '', ''];
       const symbol = 'X';
+      const boardSize = 3;
 
-      const result = findWinRow({ rowIndex, board, symbol });
+      const result = findWinRow({ rowIndex, board, symbol, boardSize });
 
       expect(result).toBe(false);
     });
@@ -41,8 +44,9 @@ describe('winConditions', () => {
       const rowIndex = 2;
       const board = ['', '', '', '', '', '', '', '', ''];
       const symbol = 'X';
+      const boardSize = 3;
 
-      const result = findWinRow({ rowIndex, board, symbol });
+      const result = findWinRow({ rowIndex, board, symbol, boardSize });
 
       expect(result).toBe(false);
     });
@@ -53,8 +57,9 @@ describe('winConditions', () => {
       const colIndex = 1;
       const board = ['X', 'O', 'X', 'X', 'O', 'X', 'X', 'O', 'X'];
       const symbol = 'X';
+      const boardSize = 3;
 
-      const result = findWinColumn({ colIndex, board, symbol });
+      const result = findWinColumn({ colIndex, board, symbol, boardSize });
 
       expect(result).toBe(true);
     });
@@ -63,8 +68,9 @@ describe('winConditions', () => {
       const colIndex = 2;
       const board = ['X', 'O', 'X', 'X', 'O', 'X', 'X', 'O', 'X'];
       const symbol = 'O';
+      const boardSize = 3;
 
-      const result = findWinColumn({ colIndex, board, symbol });
+      const result = findWinColumn({ colIndex, board, symbol, boardSize });
 
       expect(result).toBe(true);
     });
@@ -73,8 +79,9 @@ describe('winConditions', () => {
       const colIndex = 1;
       const board = ['', '', '', '', '', '', '', '', ''];
       const symbol = 'X';
+      const boardSize = 3;
 
-      const result = findWinColumn({ colIndex, board, symbol });
+      const result = findWinColumn({ colIndex, board, symbol, boardSize });
 
       expect(result).toBe(false);
     });
@@ -83,8 +90,9 @@ describe('winConditions', () => {
       const colIndex = 1;
       const board = ['X', 'O', 'X', 'X', 'O', 'X', 'O', 'O', 'O'];
       const symbol = 'X';
+      const boardSize = 3;
 
-      const result = findWinColumn({ colIndex, board, symbol });
+      const result = findWinColumn({ colIndex, board, symbol, boardSize });
 
       expect(result).toBe(false);
     });
@@ -92,16 +100,18 @@ describe('winConditions', () => {
 
   describe('findLeftDiagonal', () => {
     it('should return the correct indexes for the left main diagonal', () => {
+      const boardSize = 3;
       const expected = [0, 4, 8];
-      const result = findLeftDiagonal();
+      const result = findLeftDiagonal(boardSize);
       expect(result).toEqual(expected);
     });
   });
 
   describe('findRightDiagonal', () => {
     it('should return the correct indexes for the left main diagonal', () => {
+      const boardSize = 3;
       const expected = [2, 4, 6];
-      const result = findRightDiagonal();
+      const result = findRightDiagonal(boardSize);
       expect(result).toEqual(expected);
     });
   });
