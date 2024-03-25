@@ -2,16 +2,13 @@ import { useState } from "react";
 import { findWinColumn, findWinDiagonal, findWinRow } from "../utils/winConditions";
 import { findLeftDiagonal, findRightDiagonal } from "../utils/diagonals";
 import { getRowAndCol, getEmptyStringArray } from "../utils/board";
+import { BOARD_SIZE } from "../utils/constants";
 import "./Board.css";
 
 const Board = () => {
-  const boardArray = getEmptyStringArray();
-  const leftDiagonal = findLeftDiagonal(boardArray);
-  const rightDiagonal = findRightDiagonal(boardArray);
-
   const [currentSymbol, setCurrentSymbol] = useState("O");
   const [message, setMessage] = useState("");
-  const [board, setBoard] = useState(boardArray);
+  const [board, setBoard] = useState(getEmptyStringArray());
   const [lockBoard, setLockBoard] = useState(false);
 
   const renderBoard = () => board.map((row, rowIndex) => (
@@ -55,6 +52,9 @@ const Board = () => {
   }
 
   const findWinConditions = (rowIndex, colIndex) => {
+    const leftDiagonal = findLeftDiagonal(BOARD_SIZE);
+    const rightDiagonal = findRightDiagonal(BOARD_SIZE);
+
     return findWinRow({rowIndex, board, symbol: currentSymbol}) ||
       findWinColumn({colIndex, board, symbol: currentSymbol}) ||
       findWinDiagonal({rowIndex, colIndex, diagonalIndexes: leftDiagonal, board, symbol: currentSymbol}) ||

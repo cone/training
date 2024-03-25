@@ -1,20 +1,20 @@
-const findLeftDiagonal = (board) => {
+const findLeftDiagonal = (boardSize) => {
   let startIndex = 0;
   const diagonal = [];
-  board.forEach(() => {
+  while (startIndex < boardSize) {
     diagonal.push(startIndex);
     startIndex += 1;
-  });
+  }
   return diagonal;
 }
 
-const findRightDiagonal = (board) => {
-  let startIndex = board.length - 1;
+const findRightDiagonal = (boardSize) => {
+  let startIndex = boardSize - 1;
   const diagonal = [];
-  board.forEach(() => {
+  while (startIndex >= 0) {
     diagonal.push(startIndex);
     startIndex -= 1;
-  });
+  }
   return diagonal;
 }
 
