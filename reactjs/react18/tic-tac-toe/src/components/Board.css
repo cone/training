@@ -1,3 +1,18 @@
 .board {
   margin: 0 auto;
 }
+
+.cell {
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  font-size: 90px;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: darkred;
+}

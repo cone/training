@@ -24,10 +24,10 @@ const Board = () => {
   const renderButton = (rowIndex, cellIndex, cellValue) => {
     return (
       <button
-        data-position={`${rowIndex + 1}-${cellIndex + 1}`}
+        data-position={`${rowIndex}-${cellIndex}`}
         onClick={onButtonClick}
         disabled={lockBoard}
-        className="cell">
+        className={`cell ${cellValue === "X" ? "red" : "green"}`}>
           {cellValue}
       </button>
     );
@@ -35,9 +35,9 @@ const Board = () => {
 
   const onButtonClick = (e) => {
     const [row, col] = getRowAndCol(e.target.dataset.position);
-    const selectedSymbol = board[row - 1][col - 1];
+    const selectedSymbol = board[row][col];
     if (selectedSymbol) return;
-    updateCell(row - 1, col - 1, currentSymbol);
+    updateCell(row, col, currentSymbol);
     if (findWinConditions(row, col)) {
       setLockBoard(true);
       return setMessage(`${currentSymbol} won!!!`);
@@ -71,7 +71,7 @@ const Board = () => {
   return (
     <div className="container text-center">
       <h1>Tic Tac Toe</h1>
-      <h2>{message}</h2>
+      <h1 className="green">{message}</h1>
       <div className="row">
         <div>
           <table className="board">
