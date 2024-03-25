@@ -3,4 +3,6 @@ const getRowAndCol = (str) => {
   return [parseInt(result[1]), parseInt(result[2])];
 }
 
-export { getRowAndCol };
+const getEmptyStringArray = () => new Array(3).fill([]).map(() => new Array(3).fill(""));
+
+export { getRowAndCol, getEmptyStringArray };
