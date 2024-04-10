@@ -22,3 +22,4 @@ def seat_combinations(occupied)
 end
 
 puts seat_combinations([2, 6]).inspect
+# => [[1, 3], [3, 4], [3, 5], [5, 7], [7, 8]]
