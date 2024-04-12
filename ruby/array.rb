@@ -36,4 +36,8 @@ puts a.intersection(c)
 puts a.intersect?(c)
 # => true
 
-# ====== 
+# ====== Reduce =====
+arr.reduce(0) {|sum, n| sum + n}
+# => 45
+# The following is equivalent:
+arr.reduce(:+)
