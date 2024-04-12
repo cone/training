@@ -28,15 +28,30 @@ def solution(numbers)
   # that is the answer from other user that finished te kata (that smart bastard xD)
 end
 
-# The reason:
+# ======= The Reason =========
 # After failing the "Attemp" for test with big numerc values, I realized
 # that I needed to make the numbers smaller. If not, a timeout was reached.
 
-# I first thought about dividing the numbers by 2 until none of them could
-# get smaller. However, tht would imply also try to divide them by 3, 5, 7, etc
-# as not all of the bug numbers were divisible by two. After reflecting on that,
-# I realized I was looking for the GCD(greatest common divisor) of the numbers.
-# For instance, in the test: "solution([4, 16, 24])" the result should be "12"
+# The first attept (worked for the first set of tests):
+
+# def solution(numbers)
+#   while numbers.uniq.size > 1 do
+#     temp = []
+#     numbers.each.with_index do |number, index|
+#       left = (index - 1 >= 0 && numbers[index - 1] < number) ? numbers[index - 1] : 0
+#       right = (index + 1 < numbers.size && numbers[index + 1] < number) ? numbers[index + 1] : 0
+#       temp << number - [left, right].max
+#     end
+#     numbers = temp
+#   end
+#   numbers.sum
+# end
+
+# After seein it fail for the random tests, I first thought about dividing the 
+# numbers by 2 until none of them could get smaller. However, that would imply
+# also try to divide them by 3, 5, 7, etc as not all of the bug numbers were divisible by two.
+# After reflecting on that, I realized I was looking for the GCD(greatest common divisor) of
+# the numbers. For instance, in the test: "solution([4, 16, 24])" the result should be "12"
 # because after going through the process descibed in the kata we end up with: [4, 4, 4]
 # and if we sum up those numbers we end up with "12". However, instead of going
 # through that process, we can just get the GCD of those three numbers (4) and sum them up.
