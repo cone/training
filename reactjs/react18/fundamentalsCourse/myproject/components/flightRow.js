@@ -11,7 +11,7 @@ const FlightRow = ({ flight }) => {
     <tr>
       <td>{time}</td>
       <td>{origin}</td>
-      <td>{destination}</td>
+      {destination && <td>{destination}</td>}
     </tr>
   );
 }
