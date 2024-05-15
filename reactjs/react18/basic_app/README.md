@@ -124,3 +124,17 @@ module.exports = {
 If we run the `npm start` command, webpack will create the `dist` directory which will contain the `main.js` and `index.html` files. The `index.html` file will already reference the `main.js` file.
 
 In order to see the result, if you have the `Live Server` plugin installed, you can use the `Open with Live Server` option after right clicking on the `index.html` file located inside the `dist` folder or, you can open the `dist` directory and double clik on the `index.html` file.
+
+## Setup a Watcher (Webpack Dev Server)
+
+If we want our code changes to be reflected immediately in our browser, we can setup `webpack-dev-server`. We can install it by running the following command: `npm install webpack-dev-server --save-dev`.
+
+Then we can start our server with `npx webpack serve --mode=development`. However, in order to make it easier for us, we can replace the `start` script in our `package.json` file in order to run the watcher instead of just building the app:
+
+```diff
+"scripts": {
+-  "start": "webpack serve --mode=development",
++  "start": "webpack --mode=development",
+  "build": "webpack --mode=production"
+},
+```
