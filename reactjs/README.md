@@ -18,7 +18,16 @@
 1. Reusable and composable
 1. Can manage a private state
 
-Also they can be Functions or Classes. They should always start with a capital letter.
+Also they can be Functions or Classes. They should always start with a capital letter ("Pascal case"). If not, React will render the component as an HTML tag:
+
+```javascript
+const MyComponent = () => <h1>Hello World!</h1>;
+// Good. "<MyComponent />" is rendered as "<h1>Hello World!</h1>"
+
+const myComponent = () => <h1>Hello World!</h1>;
+// Bad. "<MyComponent />" is rendered as "<mycomponent />"
+
+```
 
 ### Reactive updates
 1. React will react to state changes and...
@@ -97,6 +106,21 @@ class Form extends React.Component {
 3. Run a development server
 4. A watcher to automatically update the browser when the code changes
 5. Create a production build
+
+## Memoization
+
+### When to use it?
+
+1. When it's faster. Measure using the profiling feature in the "React Developer Tools" in the browser.
+2. For pure functional components (those who return the same result given the same parameters)
+3. For components that render often and are given the same prop values
+4. For components whose JSX isn't trivial
+
+## Bootstrapping Options for a React App
+
+1. [create-react-app](https://create-react-app.dev/)
+2. [create-next-app](https://nextjs.org/docs/pages/api-reference/create-next-app)
+3. [vite](https://vitejs.dev/)
 
 ## Notes
 1. If we want to display two or more components without creating a `div` or other HTML parent element we can use `React.Fragment`, which can also be written just as `<>`:
