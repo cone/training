@@ -1,3 +1,7 @@
+## Setup
+
+created using the `npx create-next-app <project-name>` command.
+
 ## Result of coding test
 
 Time: 1 hour
