@@ -13,19 +13,24 @@ class Shape {
   constructor(ctx, color = "cyan") {
     this.ctx = ctx;
     this.color = color;
-    this.shape = SHAPES[Math.floor(Math.random() * SHAPES.length)];
+    const shape = SHAPES[Math.floor(Math.random() * SHAPES.length)];
+    this.squares = shape.map(([dx, dy]) => {
+      const options = {
+        ctx: this.ctx,
+        x: dx * SQUARE_SIZE,
+        y: dy * SQUARE_SIZE,
+        color: this.color
+      };
+      return new Square(options);
+    });
   }
 
   draw(x = 0, y = 0) {
-    this.shape.forEach(([dx, dy]) => {
-      const options = {
-        ctx: this.ctx,
-        x: (x * SQUARE_SIZE) + (dx * SQUARE_SIZE),
-        y: (y * SQUARE_SIZE) + (dy * SQUARE_SIZE),
-        color: this.color
-      };
-      const square = new Square(options);
-      square.draw();
+    this.squares.forEach((square) => {
+      square.draw(
+        square.x + (x * SQUARE_SIZE),
+        square.y + (y * SQUARE_SIZE)
+      );
     });
   }
 }
