@@ -15,4 +15,4 @@ const SHAPES = [
 const COLORS = ["cyan", "red", "green", "yellow", "pink", "blue"];
 
 const CANVAS_MAX_WIDTH_SQUARES = 32;
-const CANVAS_MAX_HEIGHT_SQUARES = 17;
+const CANVAS_MAX_HEIGHT_SQUARES = 16;

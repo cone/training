@@ -10,6 +10,12 @@ const getRightMostX = (squares) => {
   }, 0) / SQUARE_SIZE;
 }
 
+const getDownMostY = (squares) => {
+  return squares.reduce((max, square) => {
+    return Math.max(max, square.y);
+  }, 0) / SQUARE_SIZE;
+}
+
 class Shape {
   constructor(options) {
     this.ctx = options.ctx;
@@ -28,6 +34,7 @@ class Shape {
     });
     this.minX = getLeftMostX(this.squares);
     this.maxX = getRightMostX(this.squares);
+    this.maxY = getDownMostY(this.squares);
   }
 
   draw() {
@@ -60,5 +67,9 @@ class Shape {
 
   rightMostX() {
     return this.maxX + this.x;
+  }
+
+  downMostY() {
+    return this.maxY + this.y;
   }
 }

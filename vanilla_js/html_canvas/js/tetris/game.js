@@ -12,8 +12,6 @@ const allowedEvents = ["ArrowLeft", "ArrowRight"];
 window.addEventListener("keydown", event => {
   if (!allowedEvents.includes(event.key)) return;
   event.preventDefault();
-  console.log("Minx = ", shape.leftMostX());
-  console.log("Maxx = ", shape.rightMostX());
 
   if (event.key === "ArrowLeft" && shape.leftMostX() - 1 >= 0) {
     clearCanvas();
@@ -26,8 +24,10 @@ window.addEventListener("keydown", event => {
 });
 
 const moveDown = () => {
+  if (shape.downMostY() + 1 > CANVAS_MAX_HEIGHT_SQUARES) return;
+
   clearCanvas();
   shape.moveDown();
 };
 
-// setInterval(moveDown, 1000);
+setInterval(moveDown, 1000);
