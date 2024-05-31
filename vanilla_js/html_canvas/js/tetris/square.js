@@ -1,7 +1,3 @@
-const SQUARE_LINE_WIDTH = 1;
-const SQUARE_STROKE_STYLE = "black";
-const SQUARE_SIZE = 30;
-
 class Square {
   constructor(options) {
     this.ctx = options.ctx;

@@ -12,12 +12,15 @@ const allowedEvents = ["ArrowLeft", "ArrowRight"];
 window.addEventListener("keydown", event => {
   if (!allowedEvents.includes(event.key)) return;
   event.preventDefault();
+  console.log("Minx = ", shape.leftMostX());
+  console.log("Maxx = ", shape.rightMostX());
 
-  clearCanvas();
-  if (event.key === "ArrowLeft") {
+  if (event.key === "ArrowLeft" && shape.leftMostX() - 1 >= 0) {
+    clearCanvas();
     shape.moveLeft();
   }
-  if (event.key === "ArrowRight") {
+  if (event.key === "ArrowRight" && shape.rightMostX() + 1 <= CANVAS_MAX_WIDTH_SQUARES) {
+    clearCanvas();
     shape.moveRight();
   }
 });
@@ -27,4 +30,4 @@ const moveDown = () => {
   shape.moveDown();
 };
 
-setInterval(moveDown, 1000);
+// setInterval(moveDown, 1000);

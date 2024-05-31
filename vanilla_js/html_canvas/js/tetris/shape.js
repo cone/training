@@ -1,14 +1,14 @@
-const SHAPES = [
-  [[0,0], [0,1], [1,0], [1,1]], // square
-  [[0,0], [0,1], [0,2], [0,3]], // line
-  [[0,0], [1,0], [2,0], [3,0]], // horizontal line
-  [[0,0], [1,0], [2,0], [3,0]], // L
-  [[0,0], [1,0], [2,0], [2,1]], // inverted L
-  [[0,0], [1,0], [2,0], [2,-1]], // T
-  [[0,0], [1,0], [1,1], [2,0]], // Right side T
-  [[0,0], [1,0], [1,1], [2,1]], // S shaped shape
-];
-const COLORS = ["cyan", "red", "green", "yellow", "pink", "blue"];
+const getLeftMostX = (squares) => {
+  return squares.reduce((min, square) => {
+    return Math.min(min, square.x);
+  }, Infinity) / SQUARE_SIZE;
+}
+
+const getRightMostX = (squares) => {
+  return squares.reduce((max, square) => {
+    return Math.max(max, square.x);
+  }, 0) / SQUARE_SIZE;
+}
 
 class Shape {
   constructor(options) {
@@ -26,6 +26,8 @@ class Shape {
       };
       return new Square(options);
     });
+    this.minX = getLeftMostX(this.squares);
+    this.maxX = getRightMostX(this.squares);
   }
 
   draw() {
@@ -50,5 +52,13 @@ class Shape {
   moveDown() {
     this.y++;
     this.draw();
+  }
+
+  leftMostX() {
+    return this.minX + this.x;
+  }
+
+  rightMostX() {
+    return this.maxX + this.x;
   }
 }
