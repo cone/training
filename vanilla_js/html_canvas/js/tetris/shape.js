@@ -8,11 +8,14 @@ const SHAPES = [
   [[0,0], [1,0], [1,1], [2,0]], // Right side T
   [[0,0], [1,0], [1,1], [2,1]], // S shaped shape
 ];
+const COLORS = ["cyan", "red", "green", "yellow", "pink", "blue"];
 
 class Shape {
-  constructor(ctx, color = "cyan") {
-    this.ctx = ctx;
-    this.color = color;
+  constructor(options) {
+    this.ctx = options.ctx;
+    this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    this.x = options.x || 0;
+    this.y = options.y || 0;
     const shape = SHAPES[Math.floor(Math.random() * SHAPES.length)];
     this.squares = shape.map(([dx, dy]) => {
       const options = {
@@ -25,12 +28,22 @@ class Shape {
     });
   }
 
-  draw(x = 0, y = 0) {
+  draw() {
     this.squares.forEach((square) => {
       square.draw(
-        square.x + (x * SQUARE_SIZE),
-        square.y + (y * SQUARE_SIZE)
+        square.x + (this.x * SQUARE_SIZE),
+        square.y + (this.y * SQUARE_SIZE)
       );
     });
+  }
+
+  moveLeft() {
+    this.x--;
+    this.draw();
+  }
+
+  moveRight() {
+    this.x++;
+    this.draw();
   }
 }
