@@ -4,12 +4,16 @@ const ctx = canvas.getContext("2d");
 const shape = new Shape({ctx, x: 15});
 shape.draw();
 
+const clearCanvas = () => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+};
+
 const allowedEvents = ["ArrowLeft", "ArrowRight"];
 window.addEventListener("keydown", event => {
   if (!allowedEvents.includes(event.key)) return;
   event.preventDefault();
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  clearCanvas();
   if (event.key === "ArrowLeft") {
     shape.moveLeft();
   }
@@ -17,3 +21,10 @@ window.addEventListener("keydown", event => {
     shape.moveRight();
   }
 });
+
+const moveDown = () => {
+  clearCanvas();
+  shape.moveDown();
+};
+
+setInterval(moveDown, 1000);

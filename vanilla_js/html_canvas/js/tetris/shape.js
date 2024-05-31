@@ -46,4 +46,9 @@ class Shape {
     this.x++;
     this.draw();
   }
+
+  moveDown() {
+    this.y++;
+    this.draw();
+  }
 }
