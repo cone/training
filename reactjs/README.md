@@ -29,6 +29,10 @@ const myComponent = () => <h1>Hello World!</h1>;
 
 ```
 
+## Elements
+
+Elements are the product of executing a component. For instance `React.createElement("div", null, "Hello World!");` which is the same as the JSX code `<div>Hello World!</div>` would produce a `div` element.
+
 ### Reactive updates
 1. React will react to state changes and...
 1. Take the updates to the browser
@@ -116,6 +120,16 @@ class Form extends React.Component {
 3. For components that render often and are given the same prop values
 4. For components whose JSX isn't trivial
 
+## Props
+
+We can pass all of the props from an object to an element using the "rest operator":
+
+```javascript
+<MyComponent {...myObject}/>
+```
+
+However, that is not recommended as you would pass unnecessary parameters or make the component render unnecessarily.
+
 ## Bootstrapping Options for a React App
 
 1. [create-react-app](https://create-react-app.dev/)
@@ -145,3 +159,4 @@ function Component1(props) {
 6. JSX is NOT HTML!
 7. React separates its core library(`react`) from the code responsible for rendering the components: `react-dom` for web applications and `react-native` for mobile applications.
 8. To create a React app from scratch, the most popular options are: to use the `Create React App` tool or `Next.js`.
+9. Elements can be sent as props eg: `<Component myButton={<button>Hello</button>} />`
